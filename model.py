@@ -50,7 +50,7 @@ def prediction(data):
 def visualization(data, y=None):
     """
     For Visualize the data
-    :param y: If y doesn't provided then by default it in None
+    :param y: If y doesn't provided then by default it is None
     :param data: X dataset
     :return: None
     """
