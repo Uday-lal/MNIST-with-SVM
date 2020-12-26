@@ -3,3 +3,6 @@
 
 # .idea
 /.idea
+
+# Pickel file
+mnist.pickel
