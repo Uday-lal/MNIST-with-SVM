@@ -42,25 +42,21 @@ class MnistGui:
 
     def draw_pixel(self):
         """
-        :returns: list of pixels
         Draw the pixel on the screen
         :return: list
         """
         x = 0
         y = 0
-        pixel = []
         for row in range(self.width):
             if y <= self.height:
                 for column in range(self.height):
-                    pixel.append(pygame.draw.rect(self.screen, self.pixel_color,
-                                                  pygame.Rect(x, y, self.pixel_width, self.pixel_height)))
+                    pygame.draw.rect(self.screen, self.pixel_color,
+                                     pygame.Rect(x, y, self.pixel_width, self.pixel_height))
                     x += self.pixel_width
                 y += self.pixel_height
                 x = 0
-                print(pixel)
             else:
                 break
-        return pixel
 
     def fill_pixel(self):
         """
