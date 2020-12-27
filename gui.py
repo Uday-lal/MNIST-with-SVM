@@ -50,6 +50,8 @@ class MnistGui:
         y = 0
         pixel = []
         for row in range(self.width):
+            if y == self.height:
+                break
             for column in range(self.height):
                 pixel.append(pygame.draw.rect(self.screen, self.pixel_color,
                                               pygame.Rect(x, y, self.pixel_width, self.pixel_height)))
