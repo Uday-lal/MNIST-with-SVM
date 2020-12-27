@@ -58,6 +58,6 @@ def visualization(data, y=None):
     for i in range(len(data)):
         pyplot.imshow(data[i], cmap=pyplot.cm.get_cmap("binary"))
         if y:
-            print(y)
+            print(y[i])
         pyplot.show()
     return None
