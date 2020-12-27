@@ -38,6 +38,7 @@ def save_model(model_obj):
 def prediction(data):
     """
     Making prediction.
+    :returns: list of predicted number
     :param data: Input data or testing data
     :return: list
     """
