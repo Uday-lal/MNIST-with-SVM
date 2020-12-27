@@ -19,23 +19,31 @@ class MnistGui:
         pygame.display.set_caption("MNIST")
         self.width = 500
         self.height = 500
+        self.fps = 60
         self.bg_color = (0, 0, 0)
         self.pixel_color = (255, 255, 255)
         self.pixel_width = 10
         self.pixel_height = 10
-        self.thickness = 100
+        self.thickness = 10
         self.screen = pygame.display.set_mode((self.width, self.height))
+        self.cursor_pos = []
 
     def run(self):
         """
         Running the whole main loop
         :return: None
         """
+        clock = pygame.time.Clock()
         while True:
+            clock.tick(self.fps)
             self.mouse_pos = mouse_input()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit(0)
+            if self.mouse_pos is not None:
+                self.cursor_pos.append((self.mouse_pos[0], self.mouse_pos[1]))
+            if self.cursor_pos:
+                self.fill_pixel()
             self.screen.fill(self.bg_color)
             self.draw_pixel()
             pygame.display.flip()
@@ -43,7 +51,7 @@ class MnistGui:
     def draw_pixel(self):
         """
         Draw the pixel on the screen
-        :return: list
+        :return: None
         """
         x = 0
         y = 0
@@ -63,7 +71,9 @@ class MnistGui:
         Fill the pixel on the screen
         :return: None
         """
-        pass
+        for cursor_pos in self.cursor_pos:
+            pygame.draw.circle(self.screen, (255, 0, 0), cursor_pos, self.thickness)
+            pygame.display.update()
 
 
 if __name__ == "__main__":
