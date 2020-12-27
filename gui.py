@@ -19,7 +19,7 @@ class MnistGui:
         pygame.display.set_caption("MNIST")
         self.width = 500
         self.height = 500
-        self.fps = 60
+        self.fps = 100
         self.bg_color = (0, 0, 0)
         self.pixel_color = (255, 255, 255)
         self.pixel_width = 10
