@@ -1,5 +1,6 @@
 import pygame
 import sys
+# import math
 
 
 def mouse_input():
@@ -33,9 +34,7 @@ class MnistGui:
         Running the whole main loop
         :return: None
         """
-        clock = pygame.time.Clock()
         while True:
-            clock.tick(self.fps)
             self.mouse_pos = mouse_input()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -71,9 +70,12 @@ class MnistGui:
         Fill the pixel on the screen
         :return: None
         """
+        # area = (self.thickness * self.thickness) * math.pi
+        color = (0, 0, 0)
         for cursor_pos in self.cursor_pos:
-            pygame.draw.circle(self.screen, (255, 0, 0), cursor_pos, self.thickness)
-            pygame.display.update()
+            pygame.draw.rect(self.screen, color,
+                             pygame.Rect(cursor_pos[0], cursor_pos[1], 50, 50))
+        pygame.display.update()
 
 
 if __name__ == "__main__":
