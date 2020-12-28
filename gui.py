@@ -69,7 +69,6 @@ class MnistGui:
         Fill the pixel on the screen
         :return: None
         """
-        # area = (self.thickness * self.thickness) * math.pi
         color = (0, 0, 0)
         for cursor_pos in self.cursor_pos:
             pygame.draw.rect(self.screen, color,
