@@ -1,6 +1,5 @@
 import pygame
 import sys
-# import math
 
 
 def mouse_input():
