@@ -1,11 +1,12 @@
 import pygame
 import sys
+from convert_data import ConvertData
 
 
 def mouse_input():
     """
     Getting the mouse input
-    :return: mouse position when when user click
+    :return: cursor position when when user click
     """
     is_clicked = pygame.mouse.get_pressed(num_buttons=5)
     mouse_pos = pygame.mouse.get_pos()
@@ -19,12 +20,10 @@ class MnistGui:
         pygame.display.set_caption("MNIST")
         self.width = 500
         self.height = 500
-        self.fps = 100
         self.bg_color = (0, 0, 0)
         self.pixel_color = (255, 255, 255)
         self.pixel_width = 10
         self.pixel_height = 10
-        self.thickness = 10
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.cursor_pos = []
 
@@ -38,6 +37,8 @@ class MnistGui:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit(0)
+                if event.type == pygame.KEYDOWN:
+                    ConvertData(self.cursor_pos)
             if self.mouse_pos is not None:
                 self.cursor_pos.append((self.mouse_pos[0], self.mouse_pos[1]))
             if self.cursor_pos:
@@ -76,5 +77,4 @@ class MnistGui:
         pygame.display.update()
 
 
-if __name__ == "__main__":
-    MnistGui().run()
+MnistGui().run()
