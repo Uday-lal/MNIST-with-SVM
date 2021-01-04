@@ -1,3 +1,5 @@
+# from matplotlib import pyplot
+import numpy
 import pygame
 import sys
 from convert_data import ConvertData
@@ -26,6 +28,8 @@ class MnistGui:
         self.pixel_height = 10
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.cursor_pos = []
+        self.thickness_x = 50
+        self.thickness_y = 50
 
     def run(self):
         """
@@ -38,7 +42,9 @@ class MnistGui:
                 if event.type == pygame.QUIT:
                     sys.exit(0)
                 if event.type == pygame.KEYDOWN:
-                    ConvertData(self.cursor_pos)
+                    convert_data = numpy.array([ConvertData(self.cursor_pos, thick_x=self.thickness_x,
+                                                            thick_y=self.thickness_y).convert_data()])
+                    print(convert_data)
             if self.mouse_pos is not None:
                 self.cursor_pos.append((self.mouse_pos[0], self.mouse_pos[1]))
             if self.cursor_pos:
@@ -65,16 +71,18 @@ class MnistGui:
             else:
                 break
 
-    def fill_pixel(self):
+    def fill_pixel(self, fill=True):
         """
         Fill the pixel on the screen
+        :param fill: (bool) Weather or not user want to fill the screen (by default set to True)
         :return: None
         """
-        color = (0, 0, 0)
-        for cursor_pos in self.cursor_pos:
-            pygame.draw.rect(self.screen, color,
-                             pygame.Rect(cursor_pos[0], cursor_pos[1], 50, 50))
-        pygame.display.update()
+        if fill:
+            color = (0, 0, 0)
+            for cursor_pos in self.cursor_pos:
+                pygame.draw.rect(self.screen, color,
+                                 pygame.Rect(cursor_pos[0], cursor_pos[1], self.thickness_x, self.thickness_y))
+            pygame.display.update()
 
 
 MnistGui().run()
