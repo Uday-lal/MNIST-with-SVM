@@ -18,7 +18,7 @@ n_sample_test, nx_test, ny_test = X_test.shape
 clean_datasets = X_train.reshape((n_sample, nx * ny))
 clean_x_test = X_test.reshape((n_sample_test, nx_test * ny_test))
 
-# Starting training
+# Start training
 svm = LinearSVC()
 svm.fit(clean_datasets, y_train)
 print(svm.score(clean_datasets, y_train))  # Printing the accuracy
