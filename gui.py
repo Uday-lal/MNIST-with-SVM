@@ -1,9 +1,10 @@
 import pygame
-# from tkinter import messagebox
-# import pickle
-import sys
-from convert_data import ConvertData
+from scale_data import ScaleData
 import numpy
+import pickle
+from tkinter import messagebox
+from tkinter import *
+import sys
 
 
 def mouse_input():
@@ -24,12 +25,13 @@ class MnistGui:
         self.width = 500
         self.height = 500
         self.bg_color = (255, 255, 255)
-        self.pixel_width = 10
-        self.pixel_height = 10
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.cursor_pos = []
         self.thickness_x = 50
         self.thickness_y = 50
+        self.root = Tk()
+        self.root.eval(f"tk::PlaceWindow {self.root.winfo_toplevel()} center")
+        self.root.withdraw()
 
     def run(self):
         """
@@ -42,14 +44,17 @@ class MnistGui:
                 if event.type == pygame.QUIT:
                     sys.exit(0)
                 if event.type == pygame.KEYDOWN:
-                    convert_data = numpy.array([ConvertData(self.cursor_pos, thick_x=self.thickness_x,
-                                                            thick_y=self.thickness_y).convert_data()])
-                    print(convert_data)
-                    # n_sample, nx, ny = convert_data.shape
-                    # convert_data = convert_data.reshape((n_sample, nx * ny))
-                    # model_ = open("mnist.pickel", "rb")
-                    # model = pickle.load(model_)
-                    # messagebox.showinfo("showinfo", f"My prediction is {model.predict(convert_data)[0]}")
+                    scaled_data = numpy.array([ScaleData(self.cursor_pos, thick_x=self.thickness_x,
+                                                         thick_y=self.thickness_y).scale_img_data()])
+                    print(scaled_data)
+                    n_sample, nx, ny = scaled_data.shape
+                    scaled_data = scaled_data.reshape((n_sample, nx * ny))
+                    model_file = open("mnist.pickel", "rb")
+                    model = pickle.load(model_file)
+                    prediction = model.predict(scaled_data)
+                    messagebox.showinfo("Prediction", f"I think this number is {prediction[0]}")
+                    self.root.quit()
+                    self.cursor_pos.clear()
             if self.mouse_pos is not None:
                 self.cursor_pos.append((self.mouse_pos[0], self.mouse_pos[1]))
             self.draw()
@@ -66,7 +71,8 @@ class MnistGui:
                 pygame.draw.rect(self.screen, color,
                                  pygame.Rect(cursor_pos[0], cursor_pos[1], self.thickness_x, self.thickness_y))
             pygame.display.update()
-        except Exception:
+        except Exception as e:
+            print(e)
             pass
 
 
