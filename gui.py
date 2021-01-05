@@ -24,7 +24,6 @@ class MnistGui:
         self.width = 500
         self.height = 500
         self.bg_color = (255, 255, 255)
-        self.pixel_color = (255, 255, 255)
         self.pixel_width = 10
         self.pixel_height = 10
         self.screen = pygame.display.set_mode((self.width, self.height))
