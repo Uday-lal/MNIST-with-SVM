@@ -46,7 +46,6 @@ class MnistGui:
                 if event.type == pygame.KEYDOWN:
                     scaled_data = numpy.array([ScaleData(self.cursor_pos, thick_x=self.thickness_x,
                                                          thick_y=self.thickness_y).scale_img_data()])
-                    print(scaled_data)
                     n_sample, nx, ny = scaled_data.shape
                     scaled_data = scaled_data.reshape((n_sample, nx * ny))
                     model_file = open("mnist.pickel", "rb")
