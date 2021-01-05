@@ -1,8 +1,9 @@
-# from matplotlib import pyplot
-import numpy
 import pygame
+# from tkinter import messagebox
+# import pickle
 import sys
 from convert_data import ConvertData
+import numpy
 
 
 def mouse_input():
@@ -22,7 +23,7 @@ class MnistGui:
         pygame.display.set_caption("MNIST")
         self.width = 500
         self.height = 500
-        self.bg_color = (0, 0, 0)
+        self.bg_color = (255, 255, 255)
         self.pixel_color = (255, 255, 255)
         self.pixel_width = 10
         self.pixel_height = 10
@@ -45,44 +46,29 @@ class MnistGui:
                     convert_data = numpy.array([ConvertData(self.cursor_pos, thick_x=self.thickness_x,
                                                             thick_y=self.thickness_y).convert_data()])
                     print(convert_data)
+                    # n_sample, nx, ny = convert_data.shape
+                    # convert_data = convert_data.reshape((n_sample, nx * ny))
+                    # model_ = open("mnist.pickel", "rb")
+                    # model = pickle.load(model_)
+                    # messagebox.showinfo("showinfo", f"My prediction is {model.predict(convert_data)[0]}")
             if self.mouse_pos is not None:
                 self.cursor_pos.append((self.mouse_pos[0], self.mouse_pos[1]))
-            if self.cursor_pos:
-                self.fill_pixel()
+            self.draw()
             self.screen.fill(self.bg_color)
-            self.draw_pixel()
-            pygame.display.flip()
 
-    def draw_pixel(self):
-        """
-        Draw the pixel on the screen
-        :return: None
-        """
-        x = 0
-        y = 0
-        for row in range(self.width):
-            if y <= self.height:
-                for column in range(self.height):
-                    pygame.draw.rect(self.screen, self.pixel_color,
-                                     pygame.Rect(x, y, self.pixel_width, self.pixel_height))
-                    x += self.pixel_width
-                y += self.pixel_height
-                x = 0
-            else:
-                break
-
-    def fill_pixel(self, fill=True):
+    def draw(self):
         """
         Fill the pixel on the screen
-        :param fill: (bool) Weather or not user want to fill the screen (by default set to True)
         :return: None
         """
-        if fill:
-            color = (0, 0, 0)
+        try:
+            color = (255, 0, 0)
             for cursor_pos in self.cursor_pos:
                 pygame.draw.rect(self.screen, color,
                                  pygame.Rect(cursor_pos[0], cursor_pos[1], self.thickness_x, self.thickness_y))
             pygame.display.update()
+        except Exception:
+            pass
 
 
 MnistGui().run()
