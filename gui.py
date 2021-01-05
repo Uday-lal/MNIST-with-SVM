@@ -62,7 +62,7 @@ class MnistGui:
         :return: None
         """
         try:
-            color = (255, 0, 0)
+            color = (0, 0, 0)
             for cursor_pos in self.cursor_pos:
                 pygame.draw.rect(self.screen, color,
                                  pygame.Rect(cursor_pos[0], cursor_pos[1], self.thickness_x, self.thickness_y))
