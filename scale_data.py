@@ -32,7 +32,6 @@ class ScaleData:
         for mouse_pos in self.mouse_pos:
             x_pos, y_pos = mouse_pos
             scale_x, scale_y = round(x_pos * differ_x), round(y_pos * differ_y)
-            scale_grid[scale_y][scale_x] = 255
 
             for h in range(scale_height):
                 for w in range(scale_width):
