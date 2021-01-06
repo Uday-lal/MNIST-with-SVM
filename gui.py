@@ -44,15 +44,18 @@ class MnistGui:
                 if event.type == pygame.QUIT:
                     sys.exit(0)
                 if event.type == pygame.KEYDOWN:
-                    scaled_data = numpy.array([ScaleData(self.cursor_pos, thick_x=self.thickness_x,
-                                                         thick_y=self.thickness_y).scale_img_data()])
-                    print("Loading the model...")
-                    n_sample, nx, ny = scaled_data.shape
-                    scaled_data = scaled_data.reshape((n_sample, nx * ny))
-                    model_file = open("mnist.pickel", "rb")
-                    model = pickle.load(model_file)
-                    prediction = model.predict(scaled_data)
-                    messagebox.showinfo("Prediction", f"I think this number is {prediction[0]}")
+                    try:
+                        scaled_data = numpy.array([ScaleData(self.cursor_pos, thick_x=self.thickness_x,
+                                                             thick_y=self.thickness_y).scale_img_data()])
+                        print("Loading the model...")
+                        n_sample, nx, ny = scaled_data.shape
+                        scaled_data = scaled_data.reshape((n_sample, nx * ny))
+                        model_file = open("mnist.pickel", "rb")
+                        model = pickle.load(model_file)
+                        prediction = model.predict(scaled_data)
+                        messagebox.showinfo("Prediction", f"I think this number is {prediction[0]}")
+                    except Exception:
+                        messagebox.showerror("Error", "Number is doesn't catch by the system please try again")
                     self.root.quit()
                     self.cursor_pos.clear()
             if self.mouse_pos is not None:
