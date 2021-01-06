@@ -26,8 +26,7 @@ class MnistGui:
         self.bg_color = (255, 255, 255)
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.cursor_pos = []
-        self.thickness_x = 50
-        self.thickness_y = 50
+        self.thickness_x = self.thickness_y = 50
         self.root = Tk()
         self.root.eval(f"tk::PlaceWindow {self.root.winfo_toplevel()} center")
         self.root.withdraw()
