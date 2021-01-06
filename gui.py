@@ -22,8 +22,7 @@ class MnistGui:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption("MNIST")
-        self.width = 500
-        self.height = 500
+        self.width = self.height = 500
         self.bg_color = (255, 255, 255)
         self.screen = pygame.display.set_mode((self.width, self.height))
         self.cursor_pos = []
