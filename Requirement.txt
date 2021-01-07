@@ -2,4 +2,5 @@ pygame
 tkinter
 Sklearn
 matplotlib
-mnist (pip install mnist)
+numpy
+mnist

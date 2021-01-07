@@ -10,4 +10,5 @@ This uses a basic svm model.
 - tkinter
 - Sklearn
 - matplotlib
-- mnist
+- numpy 
+- mnist 
