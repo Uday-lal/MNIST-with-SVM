@@ -76,4 +76,5 @@ class MnistGui:
             print(e)
 
 
-MnistGui().run()
+if __name__ == "__main__":
+    MnistGui().run()
