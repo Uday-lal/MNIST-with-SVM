@@ -6,3 +6,7 @@
 
 # Pickel file
 mnist.pickel
+
+# __pycache__
+/__pycache__
+

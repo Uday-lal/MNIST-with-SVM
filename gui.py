@@ -74,7 +74,6 @@ class MnistGui:
             pygame.display.update()
         except Exception as e:
             print(e)
-            pass
 
 
 MnistGui().run()
