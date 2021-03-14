@@ -5,7 +5,7 @@ It allows the user to draw a number on the screen and have the program take a gu
 This uses a basic svm model.
 
 # Requirement
-- Python 3.6 or below
+- Python 3.6 or higher
 - pygame
 - tkinter
 - Sklearn
